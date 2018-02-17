@@ -17,12 +17,13 @@ public class Test {
     public static void main(String[] args) throws Exception{
         RandomAccessFile fin = null;
         Scanner sc = null;
-        File f1 = new File("");
-        File f2 = new File("");
+        File f1 = new File("f1.txt");
+        File f2 = new File("f2.txt");
         Map<String,Customer> allCustomers = new HashMap<String,Customer>();
         Map<String,Driver> allDrivers = new HashMap<String,Driver>();
         NearByCabs allCabs = new NearByCabs();
         try{
+            fin = new RandomAccessFile(f1,"r");
             sc = new Scanner(System.in);
             String line = null;
             while((line = fin.readLine()) != null ){
@@ -41,10 +42,14 @@ public class Test {
                     D = new Driver(d);
                     allDrivers.put(d,D);
                 }
+                else
+                    D = allDrivers.get(d);
                 C.updateRating(cr);
                 D.updateRating(dr);
             }
             int seq = 0;
+            fin.close();
+            fin = new RandomAccessFile(f2,"r");
             while((line = fin.readLine()) != null){
                 seq++;
                 String[] data = line.split(" ");
@@ -62,8 +67,11 @@ public class Test {
             }
             
             //customer input
+            System.out.println("Enter customer name:");
             String newCust = sc.nextLine().trim();
+            System.out.println("Enter seats required :");
             int seats = Integer.parseInt(sc.nextLine());
+            System.out.println("Enter destination (x,y) :");
             String locData[] = sc.nextLine().split(",");
             Location destination = new Location(Integer.parseInt(locData[0]), Integer.parseInt(locData[1]));
             Booking newBooking = new Booking(allCustomers.get(newCust),destination,seats);
