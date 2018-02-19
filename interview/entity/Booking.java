@@ -22,8 +22,5 @@ public class Booking {
     public Location getDestination() {
         return destination;
     }
-
-    public int getSeats1() {
-        return seats;
-    }
+    
 }

@@ -29,7 +29,7 @@ public class Cab implements Comparable{
         this.online = true;
     }
     public int compareTo(Object cab){
-        if(this.getDriver().getRating() <= ((Cab)cab).getDriver().getRating())
+        if(this.getDriver().getRating() >= ((Cab)cab).getDriver().getRating())
             return -1;
         else
             return 1;
@@ -40,5 +40,8 @@ public class Cab implements Comparable{
 
     public List<Booking> getBookings() {
         return bookings;
+    }
+    public boolean hasSeats(int n){
+        return this.seatsAvailable>=n;
     }
 }

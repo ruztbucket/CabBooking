@@ -46,6 +46,10 @@ public class Test {
                     D = allDrivers.get(d);
                 C.updateRating(cr);
                 D.updateRating(dr);
+                if(cr==1)
+                    D.blackList(C);
+                if(dr==1)
+                    C.blackList(D);
             }
             int seq = 0;
             fin.close();
@@ -73,18 +77,23 @@ public class Test {
             int seats = Integer.parseInt(sc.nextLine());
             System.out.println("Enter destination (x,y) :");
             String locData[] = sc.nextLine().split(",");
-            Location destination = new Location(Integer.parseInt(locData[0]), Integer.parseInt(locData[1]));
+            Location destination = new Location(Double.parseDouble(locData[0]), Double.parseDouble(locData[1]));
             Booking newBooking = new Booking(allCustomers.get(newCust),destination,seats);
             
             System.out.print("Customer rating is - ");
             System.out.println(allCustomers.get(newCust).getRating());
             
             List<Cab> L = allCabs.getMatch(newBooking);
-            System.out.println("Cab matches found are - ");
-            for(int i=0;i<L.size();++i){
-                System.out.print(" Driver name -");
-                System.out.println(L.get(i).getDriver().getName());
-            }            
+            if(L.isEmpty()){
+                System.out.println("No cabs nearby... sorry!");
+            }
+            else{
+                System.out.println("Cab matches found are - ");
+                for(int i=0;i<L.size();++i){
+                    System.out.print(" Driver name -");
+                    System.out.println(L.get(i).getDriver().getName());
+                }            
+            }
         }catch(Exception e){
             e.printStackTrace();
         }finally{

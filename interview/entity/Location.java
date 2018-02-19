@@ -2,7 +2,7 @@ package interview.entity;
 
 public class Location {
     private double x,y;
-    public Location(int x, int y){
+    public Location(double x, double y){
         this.x = x;
         this.y = y;
     }

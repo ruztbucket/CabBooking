@@ -12,7 +12,7 @@ public class Customer {
     public Customer(String name){
         this.name = name;
         this.rating = 5;
-        this.totalTrips = 10;
+        this.totalTrips = 0;
         blackListed = new HashSet<Driver>();    
     }
 

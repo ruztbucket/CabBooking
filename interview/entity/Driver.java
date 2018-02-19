@@ -7,11 +7,12 @@ public class Driver {
     private String name;
     private double rating;
     private Set<Customer> blackListed;
-    private int totalTrips = 0;
+    private int totalTrips;
     
     public Driver(String name){
         this.name = name;
         this.rating = 5;
+        this.totalTrips = 0;
         blackListed = new HashSet<Customer>();
     }
     

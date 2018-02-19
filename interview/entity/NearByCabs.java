@@ -27,8 +27,8 @@ public class NearByCabs {
             Cab cab = (Cab)it.next();
             double driverRating = cab.getDriver().getRating();
             if(nothingMatched == false && driverRating<customerRating)
-                break;
-            if(withinThreshold(cab.getBookings(),booking) && isCompatible(cab.getDriver(),booking.getCustomer())){
+                break;            
+            if(cab.hasSeats(booking.getSeats()) && withinThreshold(cab.getBookings(),booking) && isCompatible(cab.getDriver(),booking.getCustomer())){
                 matches.add(cab);
                 nothingMatched = false;
             }
@@ -36,7 +36,9 @@ public class NearByCabs {
         return matches;
     }
         public boolean withinThreshold(List<Booking> bookings, Booking newBooking){
-            boolean tooFar = true;
+            if(bookings.isEmpty())
+                return true;
+            boolean tooFar = true;                        
             Iterator it = bookings.iterator();            
             while(it.hasNext()){
                 Booking booking = (Booking)it.next();
@@ -52,5 +54,5 @@ public class NearByCabs {
             if(driver.isBlackListed(customer) || customer.isBlackListed(driver))
                 return false;
             return true;
-        }    
+        }           
 }
