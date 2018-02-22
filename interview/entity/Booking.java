@@ -1,7 +1,5 @@
 package interview.entity;
 
-import javax.print.attribute.standard.Destination;
-
 public class Booking {
     private Customer customer;
     private Location destination;
